@@ -1,0 +1,6 @@
+@BUG_galteriya_HostAddress = http://localhost:5076
+
+GET {{BUG_galteriya_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
