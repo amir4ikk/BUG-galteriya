@@ -11,7 +11,7 @@ public static class PasswordHasher
     {
         salt = GenerateSalt();
 
-        var pass = password + salt + _key;
+        var pass = password + salt+ _key;
 
         return GeneratedHash(pass);
     }

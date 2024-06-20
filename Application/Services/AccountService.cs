@@ -37,10 +37,13 @@ public class AccountService(IUnitOfWork ofWork,
         if (user is null)
             throw new Exception("404 : not found!");
 
-        if (!PasswordHasher.IsEqual(user.Password, dto.Password, user.Password))
+        if (!PasswordHasher.IsEqual(user.Password, dto.Password, user.Salt))
             return "Incorrect password!";
+        if (!user.IsVerified)
+            throw new StatusCodeExeption(HttpStatusCode.BadRequest, "User is not verified!");
 
-        return "JWT";
+
+        return _auth.GeneratedToken(user);
     }
 
     public async Task RegisterAsync(AddUserDto dto)

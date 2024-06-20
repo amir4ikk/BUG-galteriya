@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240620105029_initial")]
-    partial class initial
+    [Migration("20240620114715_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -134,14 +134,14 @@ namespace Infastructure.Migrations
                             Id = 1,
                             BugalterId = 0,
                             CompanyId = 0,
-                            CreatedAt = new DateTime(2024, 6, 20, 10, 50, 29, 441, DateTimeKind.Utc).AddTicks(6045),
+                            CreatedAt = new DateTime(2024, 6, 20, 11, 47, 15, 200, DateTimeKind.Utc).AddTicks(9561),
                             Email = "xumorahacker@gmail.com",
                             FullName = "Saidamirxon Abrorbekov",
                             IsVerified = false,
-                            Password = "186cf774c97b60a1c106ef718d10970a6a06e06bef89553d9ae65d938a886eae",
+                            Password = "8a31bb92b2be0203c5ee64e322a9db1406cb02c45170c35ab5c833ec6908a473",
                             Per_Hour = 0,
                             Roles = 2,
-                            Salt = "",
+                            Salt = "ef601c93-c27a-4e46-8518-172da1e102f4",
                             Work_Time = 0
                         });
                 });

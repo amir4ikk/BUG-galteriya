@@ -17,9 +17,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> dbContext) : DbContext(
                 Id = 1,
                 FullName = "Saidamirxon Abrorbekov",
                 Email = "xumorahacker@gmail.com",
-                Password = "186cf774c97b60a1c106ef718d10970a6a06e06bef89553d9ae65d938a886eae",
+                Password = "8a31bb92b2be0203c5ee64e322a9db1406cb02c45170c35ab5c833ec6908a473",
                 Roles = Role.SuperAdmin,
-                Salt = ""
+                Salt = "ef601c93-c27a-4e46-8518-172da1e102f4"
             });
     }
 }
