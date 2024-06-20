@@ -9,6 +9,6 @@ public interface IUserService
     Task<string> GetAllAsync(PaginationParams @params,
                                     Expression<Func<User, bool>>? expression = null);
     Task<string> GetByIdAsync(Guid id);
-    Task UpdateAsync(int id, UpdateUserDto dto);
+    Task UpdateAsync();
     Task DeleteAsync(Guid id);
 }

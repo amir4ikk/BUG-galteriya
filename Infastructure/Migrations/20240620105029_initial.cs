@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -59,6 +59,7 @@ namespace Infastructure.Migrations
                     BugalterId = table.Column<int>(type: "integer", nullable: false),
                     IsVerified = table.Column<bool>(type: "boolean", nullable: false),
                     Roles = table.Column<int>(type: "integer", nullable: false),
+                    Salt = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
@@ -68,8 +69,8 @@ namespace Infastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "BugalterId", "CompanyId", "CreatedAt", "Email", "FullName", "IsVerified", "Password", "Per_Hour", "Roles", "Work_Time" },
-                values: new object[] { 1, 0, 0, new DateTime(2024, 6, 20, 9, 0, 6, 749, DateTimeKind.Utc).AddTicks(312), "xumorahacker@gmail.com", "Saidamirxon Abrorbekov", false, "186cf774c97b60a1c106ef718d10970a6a06e06bef89553d9ae65d938a886eae", 0, 2, 0 });
+                columns: new[] { "Id", "BugalterId", "CompanyId", "CreatedAt", "Email", "FullName", "IsVerified", "Password", "Per_Hour", "Roles", "Salt", "Work_Time" },
+                values: new object[] { 1, 0, 0, new DateTime(2024, 6, 20, 10, 50, 29, 441, DateTimeKind.Utc).AddTicks(6045), "xumorahacker@gmail.com", "Saidamirxon Abrorbekov", false, "186cf774c97b60a1c106ef718d10970a6a06e06bef89553d9ae65d938a886eae", 0, 2, "", 0 });
         }
 
         /// <inheritdoc />

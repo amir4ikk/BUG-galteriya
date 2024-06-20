@@ -63,17 +63,8 @@ public class UserService(IUnitOfWork unitOfWork,
                                 : throw new Exception("User not found!");
     }
 
-    public async Task UpdateAsync(int id, UpdateUserDto dto)
+    public Task UpdateAsync()
     {
-        var model = await _unitOfWork.User.GetByIdAsync(id);
-        if (model is null)
-            throw new StatusCodeExeption(HttpStatusCode.NotFound, "User not found");
-        var user = (User)dto;
-        user.Id = id;
-        user.CreatedAt = TimeHelper.GetCurrentTime();
-        user.Password = model.Password;
-
-        await _unitOfWork.User.UpdateAsync(user);
-        throw new StatusCodeExeption(HttpStatusCode.OK, "User has been updated sucessfully");
+        throw new NotImplementedException();
     }
 }

@@ -23,14 +23,6 @@ public class AdminsController(IAdminService adminService,
         return Ok();
     }
 
-    [HttpPut]
-    [Authorize(Roles = "SuperAdmin")]
-    public async Task<IActionResult> UpdateUserAsync(int id, [FromForm]UpdateUserDto dto)
-    {
-        await _userService.UpdateAsync(id, dto);
-        return Ok();
-    }
-
     [HttpGet("admins")]
     [Authorize(Roles = "SuperAdmin")]
     public async Task<IActionResult> GetAllAdminAsync()

@@ -17,17 +17,6 @@ namespace ResumeAPI.Controllers
         public async Task<IActionResult> GetByIdAsync(Guid id)
         => Ok(await _userService.GetByIdAsync(id));
 
-        [HttpPut]
-
-        [Authorize(Roles = "Admin, SuperAdmin")]
-        public async Task<IActionResult> UpdateAsync([FromForm] UpdateUserDto dto)
-        {
-            var id = int.Parse(HttpContext.User.FindFirst("Id")!.Value);
-
-            await _userService.UpdateAsync(id, dto);
-            return Ok();
-        }
-
         [HttpDelete("id")]
         [Authorize(Roles = "Admin, SuperAdmin")]
         public async Task<IActionResult> DeleteAsync(Guid id)

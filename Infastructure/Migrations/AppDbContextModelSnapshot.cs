@@ -114,6 +114,10 @@ namespace Infastructure.Migrations
                     b.Property<int>("Roles")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Salt")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int>("Work_Time")
                         .HasColumnType("integer");
 
@@ -127,13 +131,14 @@ namespace Infastructure.Migrations
                             Id = 1,
                             BugalterId = 0,
                             CompanyId = 0,
-                            CreatedAt = new DateTime(2024, 6, 20, 9, 0, 6, 749, DateTimeKind.Utc).AddTicks(312),
+                            CreatedAt = new DateTime(2024, 6, 20, 10, 50, 29, 441, DateTimeKind.Utc).AddTicks(6045),
                             Email = "xumorahacker@gmail.com",
                             FullName = "Saidamirxon Abrorbekov",
                             IsVerified = false,
                             Password = "186cf774c97b60a1c106ef718d10970a6a06e06bef89553d9ae65d938a886eae",
                             Per_Hour = 0,
                             Roles = 2,
+                            Salt = "",
                             Work_Time = 0
                         });
                 });
