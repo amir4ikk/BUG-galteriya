@@ -2,7 +2,6 @@
 using System.Text;
 
 namespace Application.Common.Security;
-
 public static class PasswordHasher
 {
     private static readonly string _key = "d9b4f349-17a5-4125-aa1b-197cbc542090";
@@ -40,7 +39,6 @@ public static class PasswordHasher
             return stringBuilder.ToString();
         }
     }
-
     private static string GenerateSalt()
         => Guid.NewGuid().ToString();
 }

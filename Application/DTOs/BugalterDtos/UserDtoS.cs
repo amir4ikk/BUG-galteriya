@@ -3,7 +3,7 @@ using Infastructure.Interfaces;
 
 namespace Application.DTOs.BugalterDtos;
 
-public class UserDto()
+public class UserDtoS()
 {
     public int Id { get; set; }
     public string FullName { get; set; } = "";
@@ -11,9 +11,9 @@ public class UserDto()
     public int Time {  get; set; }
     public double Tax { get; set; }
     
-    public static implicit operator UserDto(User user)
+    public static implicit operator UserDtoS(User user)
     {
-        return new UserDto()
+        return new UserDtoS()
         {
             Id = user.Id,
             FullName = user.FullName,

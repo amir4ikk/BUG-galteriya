@@ -13,6 +13,7 @@ using Infastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using ResumeAPI.Configurations;
 using ResumeAPI.Middlewares;
+using Serilog;
 using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,9 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.Configure<ConfigurationOptions>(
                 builder.Configuration.GetSection("RedisCacheOptions"));
+
+builder.Host.UseSerilog((hostingContext, loggerConfiguration) =>
+loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration));
 
 builder.Services.AddStackExchangeRedisCache(options =>
 {

@@ -3,6 +3,7 @@ using Infastructure.Interfaces;
 using System.Net;
 using BUGgalteriyaAPI.Application.Common.Exceptions;
 using Application.DTOs.BugalterDtos;
+using Application.DTOs.BugalterDto;
 
 namespace Application.Services;
 
@@ -19,18 +20,18 @@ public class BugalterService(IUnitOfWork unitOf) : IBugalterService
         await unitOf.User.UpdateAsync(user);
     }
 
-    public async Task<List<UserDto>> GetAllAsync()
+    public async Task<List<UserDtoS>> GetAllAsync()
     {
         var all = await unitOf.User.GetAllAsync();
-        return all.Select(X => (UserDto)X).ToList();
+        return all.Select(X => (UserDtoS)X).ToList();
     }
 
-    public async Task<UserDto> GetByIdAsync(int id)
+    public async Task<UserDtoS> GetByIdAsync(int id)
     {
         var user = await unitOf.User.GetByIdAsync(id);
         if (user is null)
             throw NotFound();
-        return (UserDto)user;
+        return (UserDtoS)user;
     }
 
     public async Task ToZeroAsync(int id)
