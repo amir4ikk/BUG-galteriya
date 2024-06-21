@@ -51,14 +51,18 @@ public class AccountService(IUnitOfWork ofWork,
         var user = await _userRepository.GiveByEmailAsync(p => p.Email.Equals(dto.Email));
         if (user is not null)
             throw new Exception("409: user already exists!");
-
+        var comp = await _ofWork.Company.GetByIdAsync(dto.CompanyId);
+        if (comp is null)
+            throw new StatusCodeExeption(HttpStatusCode.NotFound, "Company not found");
+        comp.Employees_Count += 1;
+        await _ofWork.Company.UpdateAsync(comp);
         var result = PasswordHasher.GetHash(dto.Password, out var salt);
-
         var entity = (User)dto;
         entity.Password = result;
         entity.Salt = salt;
-
         await _userRepository.CreateAsync(entity);
+
+
     }
 
     public async Task SendCodeAsync(string email)

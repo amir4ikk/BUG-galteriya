@@ -4,9 +4,8 @@ using Application.DTOs.BugalterDtos;
 namespace Application.Interfaces;
 public interface IBugalterService
 {
-    Task CreateAsync(AddBugalterDto dto);
-    Task<BugalterDto?> GetByIdAsync(int id);
-    Task<List<BugalterDto>> GetAllAsync();
-    Task DeleteAsync(int id);
-    Task UpdateAsync(BugalterDto dto);
+    public Task<UserDto> GetByIdAsync(int id);
+    public Task AddBonusAsync(int id, int balance);
+    public Task ToZeroAsync(int id);
+    public Task<List<UserDto>> GetAllAsync();
 }
