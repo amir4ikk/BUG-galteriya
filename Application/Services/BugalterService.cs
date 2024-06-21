@@ -1,39 +1,49 @@
-﻿using Application.DTOs.BugalterDto;
+﻿using Application.Interfaces;
+using Infastructure.Interfaces;
+using System.Net;
+using BUGgalteriyaAPI.Application.Common.Exceptions;
 using Application.DTOs.BugalterDtos;
-using Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Application.Services
+namespace Application.Services;
+
+public class BugalterService(IUnitOfWork unitOf) : IBugalterService
 {
-    public class BugalterService : IBugalterService
+    private readonly IUnitOfWork unitOf = unitOf;
+
+    public async Task AddBonusAsync(int id, int balance)
     {
-        public Task CreateAsync(AddBugalterDto dto)
-        {
-            throw new NotImplementedException();
-        }
+        var user = await unitOf.User.GetByIdAsync(id);
+        if (user is null)
+            throw NotFound();
+        user.Work_Time += balance / user.Per_Hour;
+        await unitOf.User.UpdateAsync(user);
+    }
 
-        public Task DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+    public async Task<List<UserDto>> GetAllAsync()
+    {
+        var all = await unitOf.User.GetAllAsync();
+        return all.Select(X => (UserDto)X).ToList();
+    }
 
-        public Task<List<BugalterDto>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+    public async Task<UserDto> GetByIdAsync(int id)
+    {
+        var user = await unitOf.User.GetByIdAsync(id);
+        if (user is null)
+            throw NotFound();
+        return (UserDto)user;
+    }
 
-        public Task<BugalterDto?> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+    public async Task ToZeroAsync(int id)
+    {
+        var user = await unitOf.User.GetByIdAsync(id);
+        if (user is null)
+            throw NotFound();
+        user.Work_Time = 0;
+        await unitOf.User.UpdateAsync(user);
+    }
 
-        public Task UpdateAsync(BugalterDto dto)
-        {
-            throw new NotImplementedException();
-        }
+    private StatusCodeExeption NotFound()
+    {
+        return new StatusCodeExeption(HttpStatusCode.NotFound, "User Not Found");
     }
 }
