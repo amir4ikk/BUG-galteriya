@@ -28,6 +28,26 @@ public class AdminService(IUnitOfWork work,
         await _work.User.UpdateAsync(user);
     }
 
+    public async Task CreateCompanyAsync(string Company, string Creator)
+    {
+        var comp = new Company()
+        {
+            Name = Company,
+            CreatedAt = DateTime.Now,
+            Creator_Name = Creator,
+            Employees_Count = 0
+        };
+        await _work.Company.CreateAsync(comp);
+    }
+
+    public async Task DeleteCompanyAsync(int id)
+    {
+        var comp = await _work.Company.GetByIdAsync(id);
+        if (comp is null)
+            throw new StatusCodeExeption(HttpStatusCode.NotFound, "Comp is not found");
+        await _work.Company.DeleteAsync(comp);
+    }
+
     public async Task DeleteUserAsync(int id)
     {
         var user = await _work.User.GetByIdAsync(id);
@@ -41,4 +61,9 @@ public class AdminService(IUnitOfWork work,
         => (await _work.User.GetAllAsync())
             .Where(p =>  p.Roles == Role.Admin)
             .ToList();
+
+    public async Task<List<Company>> GetAllCompanies()
+    {
+        return await _work.Company.GetAllAsync();
+    }
 }
