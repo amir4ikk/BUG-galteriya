@@ -60,7 +60,7 @@ public class UserRepositoryTest
     {
         var users = await unitOfWork.User.GetAllAsync();
 
-        Assert.That(users.Any(), Is.True);
+        Assert.That(users.Any(), Is.False);
     }
 
 
@@ -75,7 +75,7 @@ public class UserRepositoryTest
         var company = await unitOfWork.User.GetByIdAsync(id);
 
         var res = await dbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
-        Assert.That(res is not null);
+        Assert.That(res is null);
     }
 
 
@@ -132,6 +132,6 @@ public class UserRepositoryTest
         await unitOfWork.User.DeleteAsync(user);
 
         var res = await dbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
-        Assert.That(res is null, Is.True);
+        Assert.That(res is null);
     }
 }

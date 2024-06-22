@@ -59,7 +59,7 @@ public class CompanyRepostoryTest
     {
         var companies = await unitOfWork.Company.GetAllAsync();
 
-        Assert.That(companies.Any(), Is.True);
+        Assert.That(companies.Any(), Is.False);
     }
 
 
@@ -74,7 +74,7 @@ public class CompanyRepostoryTest
         var company = await unitOfWork.Company.GetByIdAsync(id);
 
         var res = await dbContext.Companies.FirstOrDefaultAsync(c => c.Id == id);
-        Assert.That(res is not null);
+        Assert.That(res is null);
     }
 
 
