@@ -26,7 +26,7 @@ public class UserRepositoryTest
     // Test 1
     [TestCase("Abror", 8, 10, "abror4ik@gmail.com", "123", 1)]
     // Test 2
-    [TestCase("Saidamirxon", 6, 5, "saidamirxon@gmail.com", "321", 2)]
+    [TestCase("Saidamirxon", 6, 5, "xumorahacker@gmail.com", "321", 2)]
     public async Task AddAsync(string fullName, int workTime, int perHour, string email, string password, int companyId)
     {
         var user = new User()
