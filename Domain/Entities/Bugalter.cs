@@ -7,5 +7,5 @@ public class Bugalter : BaseEntity
     public string Company_Name { get; set; } = string.Empty;
 
     [ForeignKey(nameof(CompanyId))]
-    public int CompanyId { get; set; }
+    public int CompanyId { get; set; }  
 }
