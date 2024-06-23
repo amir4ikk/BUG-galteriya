@@ -19,7 +19,7 @@ public class BugalterService(IUnitOfWork unitOf) : IBugalterService
         user.Work_Time += balance / user.Per_Hour;
         await unitOf.User.UpdateAsync(user);
     }
-
+    
     public async Task<List<UserDtoS>> GetAllAsync()
     {
         var all = await unitOf.User.GetAllAsync();
