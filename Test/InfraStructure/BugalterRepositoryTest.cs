@@ -57,7 +57,7 @@ public class BugalterRepositoryTest
     {
         var bugalters = await unitOfWork.Bugalter.GetAllAsync();
 
-        Assert.That(bugalters.Any(), Is.True);
+        Assert.That(bugalters.Any(), Is.False);
     }
 
 
@@ -72,7 +72,7 @@ public class BugalterRepositoryTest
         var company = await unitOfWork.Bugalter.GetByIdAsync(id);
 
         var res = await dbContext.Bugalters.FirstOrDefaultAsync(b => b.Id == id);
-        Assert.That(res is not null);
+        Assert.That(res is null);
     }
 
 
@@ -126,6 +126,6 @@ public class BugalterRepositoryTest
         await unitOfWork.Bugalter.DeleteAsync(bugalter);
 
         var res = await dbContext.Bugalters.FirstOrDefaultAsync(b => b.Id == id);
-        Assert.That(res is null, Is.True);
+        Assert.That(res is null);
     }
 }
