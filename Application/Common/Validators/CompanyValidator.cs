@@ -14,8 +14,5 @@ public class CompanyValidator : AbstractValidator<Company>
         RuleFor(x => x.Creator_Name)
             .NotEmpty()
             .WithMessage("Creator_Name bosh bolmasligi kerak");
-        RuleFor(x => x.Employees_Count)
-            .NotEmpty()
-            .WithMessage("Birta Bo'lsa Ham Ishchi Bo'lishi Kerak");
     }
 }

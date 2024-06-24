@@ -1,10 +1,12 @@
 ﻿using Application.DTOs.BugalterDto;
 using Application.DTOs.BugalterDtos;
+using Application.DTOs.CompanyDtos;
 using Domain.Entities;
 
 namespace Application.Interfaces;
 public interface ICompanyService
 {
-    Task<Company?> GetByIdAsync(int id);
-    Task<List<Company>> GetAllAsync();
+    Task<CompanyDto?> GetByIdAsync(int id);
+    Task<List<CompanyDto>> GetAllAsync();
+    Task CreateAsync(AddCompanyDto dto);
 }

@@ -27,4 +27,12 @@ public class AdminsController(IAdminService adminService,
     [Authorize(Roles = "SuperAdmin")]
     public async Task<IActionResult> GetAllAdminAsync()
         => Ok(await _adminService.GetAllAdminAsync());
+
+    [HttpDelete("id")]
+    [Authorize(Roles = "SuperAdmin, Admin")]
+    public async Task<IActionResult> DeleteUserAsync(int id)
+    {
+        await _adminService.DeleteUserAsync(id);
+        return Ok();
+    }
 }

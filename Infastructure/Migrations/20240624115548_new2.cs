@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class new2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -70,7 +70,7 @@ namespace Infastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "BugalterId", "CompanyId", "CreatedAt", "Email", "FullName", "IsVerified", "Password", "Per_Hour", "Roles", "Salt", "Work_Time" },
-                values: new object[] { 1, 0, 0, new DateTime(2024, 6, 20, 11, 47, 15, 200, DateTimeKind.Utc).AddTicks(9561), "xumorahacker@gmail.com", "Saidamirxon Abrorbekov", false, "8a31bb92b2be0203c5ee64e322a9db1406cb02c45170c35ab5c833ec6908a473", 0, 2, "ef601c93-c27a-4e46-8518-172da1e102f4", 0 });
+                values: new object[] { 1, 0, 0, new DateTime(2024, 6, 24, 11, 55, 46, 922, DateTimeKind.Utc).AddTicks(874), "xumorahacker@gmail.com", "Saidamirxon Abrorbekov", true, "8a31bb92b2be0203c5ee64e322a9db1406cb02c45170c35ab5c833ec6908a473", 0, 2, "ef601c93-c27a-4e46-8518-172da1e102f4", 0 });
         }
 
         /// <inheritdoc />

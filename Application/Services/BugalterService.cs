@@ -2,14 +2,18 @@
 using Infastructure.Interfaces;
 using System.Net;
 using BUGgalteriyaAPI.Application.Common.Exceptions;
-using Application.DTOs.BugalterDtos;
-using Application.DTOs.BugalterDto;
+using Domain.Entities;
+using Domain.Enums;
+using Application.DTOs.UserDtos;
+using Newtonsoft.Json;
 
 namespace Application.Services;
 
-public class BugalterService(IUnitOfWork unitOf) : IBugalterService
+public class BugalterService(IUnitOfWork unitOf,
+                             IUserRepository userRepository) : IBugalterService
 {
-    private readonly IUnitOfWork unitOf = unitOf;
+    private readonly IUnitOfWork _unitOf = unitOf;
+    private readonly IUserRepository _userRepository = userRepository;
 
     public async Task AddBonusAsync(int id, int balance)
     {
@@ -19,28 +23,27 @@ public class BugalterService(IUnitOfWork unitOf) : IBugalterService
         user.Work_Time += balance / user.Per_Hour;
         await unitOf.User.UpdateAsync(user);
     }
-    
-    public async Task<List<UserDtoS>> GetAllAsync()
+
+    public async Task<List<User>> GetAllBugalterAsync()
+        => (await _unitOf.User.GetAllAsync())
+            .Where(p => p.Roles == Role.Admin)
+    .ToList();
+
+    public async Task<string> GetBugaltersByIdAsync(int id)
     {
-        var all = await unitOf.User.GetAllAsync();
-        return all.Select(X => (UserDtoS)X).ToList();
+        var bugalter = await _userRepository.GetByIdAsync(p => p.Id.Equals(id));
+
+        return bugalter is not null ? JsonConvert.SerializeObject((UserDto)bugalter)
+                                : throw new Exception("Bugalter not found!");
     }
 
-    public async Task<UserDtoS> GetByIdAsync(int id)
+    public async Task ToZeroAsync(int UserId)
     {
-        var user = await unitOf.User.GetByIdAsync(id);
-        if (user is null)
-            throw NotFound();
-        return (UserDtoS)user;
-    }
-
-    public async Task ToZeroAsync(int id)
-    {
-        var user = await unitOf.User.GetByIdAsync(id);
+        var user = await _userRepository.GetByIdAsync(UserId);
         if (user is null)
             throw NotFound();
         user.Work_Time = 0;
-        await unitOf.User.UpdateAsync(user);
+        await _userRepository.UpdateAsync(user);
     }
 
     private StatusCodeExeption NotFound()

@@ -5,8 +5,6 @@ namespace Application.DTOs.UserDtos;
 public class AddUserDto
 {
     public string FullName { get; set; } = string.Empty;
-    public int Work_Time { get; set; }
-    public int Per_Hour { get; set; }
     public string Email { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
     public int CompanyId { get; set; }

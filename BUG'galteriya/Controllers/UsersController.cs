@@ -14,12 +14,12 @@ namespace ResumeAPI.Controllers
 
         [HttpGet("{id}")]
         [Authorize(Roles = "SuperAdmin, Admin")]
-        public async Task<IActionResult> GetByIdAsync(Guid id)
+        public async Task<IActionResult> GetByIdAsync(int id)
         => Ok(await _userService.GetByIdAsync(id));
 
         [HttpDelete("id")]
         [Authorize(Roles = "Admin, SuperAdmin")]
-        public async Task<IActionResult> DeleteAsync(Guid id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             await _userService.DeleteAsync(id);
             return Ok();

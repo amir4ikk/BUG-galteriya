@@ -8,7 +8,7 @@ public interface IUserService
 {
     Task<string> GetAllAsync(PaginationParams @params,
                                     Expression<Func<User, bool>>? expression = null);
-    Task<string> GetByIdAsync(Guid id);
+    Task<string> GetByIdAsync(int id);
     Task UpdateAsync();
-    Task DeleteAsync(Guid id);
+    Task DeleteAsync(int id);
 }

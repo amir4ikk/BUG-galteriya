@@ -23,7 +23,7 @@ public class UserService(IUnitOfWork unitOfWork,
     private readonly IHttpContextAccessor _accessor = accessor;
     private const string CACHE_KEY = "users";
 
-    public async Task DeleteAsync(Guid id)
+    public async Task DeleteAsync(int id)
     {
         var user = await _userRepository.GetByIdAsync(p => p.Id.Equals(id));
 
@@ -55,7 +55,7 @@ public class UserService(IUnitOfWork unitOfWork,
         return JsonConvert.SerializeObject(users.Select(p => (UserDto)p), Formatting.Indented);
     }
 
-    public async Task<string> GetByIdAsync(Guid id)
+    public async Task<string> GetByIdAsync(int id)
     {
         var user = await _userRepository.GetByIdAsync(p => p.Id.Equals(id));
 

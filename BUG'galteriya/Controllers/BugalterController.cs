@@ -13,12 +13,27 @@ public class BugalterController(IBugalterService bugalterService) : ControllerBa
     private readonly IBugalterService _bugalterService = bugalterService;
 
     [HttpGet("users")]
-    [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> GetAllAsync()
-        => Ok(await _bugalterService.GetAllAsync());
+    [Authorize(Roles = "Admin, SuperAdmin")]
+    public async Task<IActionResult> GetAllBugalterAsync()
+        => Ok(await _bugalterService.GetAllBugalterAsync());
 
     [HttpGet("{id}")]
-    [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> GetByIdAsync(int id)
-        => Ok(await _bugalterService.GetByIdAsync(id));
+    [Authorize(Roles = "Admin, SuperAdmin")]
+    public async Task<IActionResult> GetBugaltersByIdAsync(int id)
+        => Ok(await _bugalterService.GetBugaltersByIdAsync(id));
+
+    [HttpPost("id")]
+    [Authorize(Roles = "SuperAdmin")]
+    public async Task<IActionResult> AddBonusAsync(int id,int balance)
+    {
+        await _bugalterService.AddBonusAsync(id, balance);
+        return Ok();
+    }
+    [HttpGet("{UserId}")]
+    [Authorize(Roles = "Admin, SuperAdmin")]
+    public async Task<IActionResult> ToZeroAsync(int UserId)
+    {
+        await _bugalterService.ToZeroAsync(UserId);
+        return Ok();
+    }
 }

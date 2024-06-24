@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240621141631_initial")]
-    partial class initial
+    [Migration("20240624115548_new2")]
+    partial class new2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -134,11 +134,11 @@ namespace Infastructure.Migrations
                             Id = 1,
                             BugalterId = 0,
                             CompanyId = 0,
-                            CreatedAt = new DateTime(2024, 6, 21, 14, 16, 31, 176, DateTimeKind.Utc).AddTicks(9777),
-                            Email = "owner@gmail.com",
-                            FullName = "Oybek Muxtaraliyev",
-                            IsVerified = false,
-                            Password = "A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE3",
+                            CreatedAt = new DateTime(2024, 6, 24, 11, 55, 46, 922, DateTimeKind.Utc).AddTicks(874),
+                            Email = "xumorahacker@gmail.com",
+                            FullName = "Saidamirxon Abrorbekov",
+                            IsVerified = true,
+                            Password = "8a31bb92b2be0203c5ee64e322a9db1406cb02c45170c35ab5c833ec6908a473",
                             Per_Hour = 0,
                             Roles = 2,
                             Salt = "ef601c93-c27a-4e46-8518-172da1e102f4",
