@@ -1,39 +1,31 @@
-﻿using Application.DTOs.BugalterDto;
-using Application.DTOs.BugalterDtos;
-using Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Application.Interfaces;
+using BUGgalteriyaAPI.Application.Common.Exceptions;
+using Domain.Entities;
+using Infastructure.Interfaces;
+using System.Net;
 
 namespace Application.Services
 {
-    public class CompanyService : ICompanyService
+    public class CompanyService(IUnitOfWork ofWork) : ICompanyService
     {
-        public Task CreateAsync(AddBugalterDto dto)
+        private readonly IUnitOfWork ofWork = ofWork;
+
+        public async Task<List<Company>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var list = await ofWork.Company.GetAllAsync();
+            if(list == null)
+            {
+                throw new StatusCodeExeption(HttpStatusCode.NotFound, "Info is null here");
+            }
+            return list;
         }
 
-        public Task DeleteAsync(int id)
+        public Task<Company?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<BugalterDto>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<BugalterDto?> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(BugalterDto dto)
-        {
-            throw new NotImplementedException();
+            var comp = ofWork.Company.GetByIdAsync(id);
+            if (comp is null)
+                throw new StatusCodeExeption(HttpStatusCode.NotFound, "Company not found");
+            return comp;
         }
     }
 }
