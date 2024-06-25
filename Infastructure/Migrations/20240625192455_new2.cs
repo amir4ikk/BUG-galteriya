@@ -55,8 +55,9 @@ namespace Infastructure.Migrations
                     Per_Hour = table.Column<int>(type: "integer", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
+                    Salary = table.Column<int>(type: "integer", nullable: false),
+                    Tax = table.Column<double>(type: "double precision", nullable: false),
                     CompanyId = table.Column<int>(type: "integer", nullable: false),
-                    BugalterId = table.Column<int>(type: "integer", nullable: false),
                     IsVerified = table.Column<bool>(type: "boolean", nullable: false),
                     Roles = table.Column<int>(type: "integer", nullable: false),
                     Salt = table.Column<string>(type: "text", nullable: false),
@@ -69,8 +70,8 @@ namespace Infastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "BugalterId", "CompanyId", "CreatedAt", "Email", "FullName", "IsVerified", "Password", "Per_Hour", "Roles", "Salt", "Work_Time" },
-                values: new object[] { 1, 0, 0, new DateTime(2024, 6, 24, 11, 55, 46, 922, DateTimeKind.Utc).AddTicks(874), "xumorahacker@gmail.com", "Saidamirxon Abrorbekov", true, "8a31bb92b2be0203c5ee64e322a9db1406cb02c45170c35ab5c833ec6908a473", 0, 2, "ef601c93-c27a-4e46-8518-172da1e102f4", 0 });
+                columns: new[] { "Id", "CompanyId", "CreatedAt", "Email", "FullName", "IsVerified", "Password", "Per_Hour", "Roles", "Salary", "Salt", "Tax", "Work_Time" },
+                values: new object[] { 1, 0, new DateTime(2024, 6, 25, 19, 24, 54, 928, DateTimeKind.Utc).AddTicks(4252), "xumorahacker@gmail.com", "Saidamirxon Abrorbekov", true, "8a31bb92b2be0203c5ee64e322a9db1406cb02c45170c35ab5c833ec6908a473", 0, 2, 0, "ef601c93-c27a-4e46-8518-172da1e102f4", 0.0, 0 });
         }
 
         /// <inheritdoc />

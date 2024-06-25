@@ -23,7 +23,6 @@ public class BugalterServiceTest
     {
         _unitOfWork = _mockUnitOfWork.Object;
         _validator = _mockValidator.Object;
-        _bugalterService = new BugalterService(_unitOfWork);
     }
 
 

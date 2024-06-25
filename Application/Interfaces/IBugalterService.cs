@@ -1,12 +1,12 @@
 ﻿using Application.DTOs.BugalterDto;
 using Application.DTOs.BugalterDtos;
-using Domain.Entities;
 
 namespace Application.Interfaces;
 public interface IBugalterService
 {
-    public Task<string> GetBugaltersByIdAsync(int id);
-    public Task AddBonusAsync(int id, int balance);
-    public Task ToZeroAsync(int id);
-    public Task<List<User>> GetAllBugalterAsync();
+    Task<BugalterDto?> GetByIdAsync(int id);
+    Task AddBonusAsync(int id, int balance);
+    Task<List<BugalterDto>> GetAllBugalterAsync();
+    Task CreateAsync(AddBugalterDto dto);
+    Task GiveWorkTimeAsync(int id, int WorkTime);
 }

@@ -11,6 +11,7 @@ public class BugalterDto : AddBugalterDto
         return new BugalterDto()
         {
             Id = bugalter.Id,
+            Name = bugalter.Name,
             CompanyId = bugalter.CompanyId,
             Company_Name = bugalter.Company_Name
         };

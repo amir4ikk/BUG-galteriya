@@ -20,13 +20,14 @@ namespace BUG_galteriya.Controllers
             await _comp.CreateAsync(dto);
             return Ok();
         }
+
         [HttpGet("id")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             return Ok(await _comp.GetByIdAsync(id));
         }
 
-        [HttpGet("movies")]
+        [HttpGet("Companies")]
         [Authorize]
         public async Task<IActionResult> GetAllAsync()
         {

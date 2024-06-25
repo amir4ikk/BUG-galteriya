@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240624115548_new2")]
+    [Migration("20240625192455_new2")]
     partial class new2
     {
         /// <inheritdoc />
@@ -87,9 +87,6 @@ namespace Infastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BugalterId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("CompanyId")
                         .HasColumnType("integer");
 
@@ -117,9 +114,15 @@ namespace Infastructure.Migrations
                     b.Property<int>("Roles")
                         .HasColumnType("integer");
 
+                    b.Property<int>("Salary")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Salt")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<double>("Tax")
+                        .HasColumnType("double precision");
 
                     b.Property<int>("Work_Time")
                         .HasColumnType("integer");
@@ -132,16 +135,17 @@ namespace Infastructure.Migrations
                         new
                         {
                             Id = 1,
-                            BugalterId = 0,
                             CompanyId = 0,
-                            CreatedAt = new DateTime(2024, 6, 24, 11, 55, 46, 922, DateTimeKind.Utc).AddTicks(874),
+                            CreatedAt = new DateTime(2024, 6, 25, 19, 24, 54, 928, DateTimeKind.Utc).AddTicks(4252),
                             Email = "xumorahacker@gmail.com",
                             FullName = "Saidamirxon Abrorbekov",
                             IsVerified = true,
                             Password = "8a31bb92b2be0203c5ee64e322a9db1406cb02c45170c35ab5c833ec6908a473",
                             Per_Hour = 0,
                             Roles = 2,
+                            Salary = 0,
                             Salt = "ef601c93-c27a-4e46-8518-172da1e102f4",
+                            Tax = 0.0,
                             Work_Time = 0
                         });
                 });
